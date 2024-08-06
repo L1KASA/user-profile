@@ -5,14 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.sql.Date;
+import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EntityListeners(LastUpdateListener.class)
 @Table(name = "users")
 public class User {
 
@@ -33,8 +40,27 @@ public class User {
     private String gender;
 
     @Column()
-    private Date birthday;
+    private Date dateOfBirthday;
+    @Column()
+    private long age;
+
+    @Column(nullable = true)
+    @LastModifiedDate
+    private Date lastUpdate;
+
+    @PrePersist
+    @PreUpdate
+    public void calculateAge() {
+        if (dateOfBirthday != null) {
+            age = ChronoUnit.YEARS.between(
+                    LocalDateTime.ofInstant(Instant.ofEpochMilli(dateOfBirthday.getTime()), ZoneOffset.UTC),
+                    LocalDateTime.now()
+            );
 
 
+        }
+    }
 }
+
+
 

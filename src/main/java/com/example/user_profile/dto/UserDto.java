@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -25,5 +25,10 @@ public class UserDto {
 
     private String gender;
 
-    private Date birthday;
+    private Date dateOfBirthday;
+
+    private long age;
+
+    private Date lastUpdate;
+
 }

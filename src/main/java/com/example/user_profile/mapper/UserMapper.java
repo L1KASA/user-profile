@@ -3,6 +3,8 @@ package com.example.user_profile.mapper;
 import com.example.user_profile.dto.UserDto;
 import com.example.user_profile.entity.User;
 
+
+
 public class UserMapper {
     public static UserDto mapToUserDto(User user) {
         return new UserDto(
@@ -11,7 +13,9 @@ public class UserMapper {
                 user.getEmail(),
                 user.getPassword(),
                 user.getGender(),
-                user.getBirthday()
+                user.getDateOfBirthday(),
+                user.getAge(),
+                user.getLastUpdate()
         );
     }
 
@@ -22,7 +26,9 @@ public class UserMapper {
                 userDto.getEmail(),
                 userDto.getPassword(),
                 userDto.getGender(),
-                userDto.getBirthday()
+                userDto.getDateOfBirthday(),
+                userDto.getAge(),
+                userDto.getLastUpdate()
         );
     }
 }
