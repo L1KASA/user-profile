@@ -2,7 +2,6 @@ package com.example.user_profile.controller;
 
 import com.example.user_profile.dto.UserDto;
 import com.example.user_profile.service.UserService;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +44,12 @@ public class UserController {
     public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long id, @RequestBody UserDto updatedUser){
         UserDto userDto = userService.updateUser(id, updatedUser);
         return ResponseEntity.ok(userDto);
+    }
+
+    // Build Delete User REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable("id") Long id){
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User deleted successfully.");
     }
 }
