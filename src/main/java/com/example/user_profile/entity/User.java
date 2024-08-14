@@ -56,8 +56,6 @@ public class User {
                     LocalDateTime.ofInstant(Instant.ofEpochMilli(dateOfBirthday.getTime()), ZoneOffset.UTC),
                     LocalDateTime.now()
             );
-
-
         }
     }
 }
