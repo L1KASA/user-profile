@@ -3,13 +3,23 @@ package com.example.user_profile.entity;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public   class LastUpdateListener {
 
-    @PreUpdate
     @PrePersist
-    public void setLastUpdate( User p ) {
-        p.setLastUpdate(new Date());
+    @PreUpdate
+    public void calculateAge( User p ) {
+        if (p.getDateOfBirthday() != null) {
+            p.setAge(ChronoUnit.YEARS.between(
+                    LocalDateTime.ofInstant(Instant.ofEpochMilli(p.getDateOfBirthday().getTime()), ZoneOffset.UTC),
+                    LocalDateTime.now())
+            );
+        }
     }
+
 }

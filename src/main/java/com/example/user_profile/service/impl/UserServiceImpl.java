@@ -6,7 +6,6 @@ import com.example.user_profile.repository.UserRepository;
 import com.example.user_profile.dto.UserDto;
 import com.example.user_profile.entity.User;
 
-import com.example.user_profile.repository.UserRepository;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -28,24 +27,30 @@ public class UserServiceImpl implements UserService {
         User savedTodo = userRepository.save(todo);
 
         return UserMapper.mapToUserDto(savedTodo);
+
     }
 
     @Override
     public UserDto getUserById(long id) {
+
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User is not exists with given id: " + id));
         return UserMapper.mapToUserDto(user);
+
     }
 
     @Override
     public List<UserDto> getAllUsers() {
+
         List<User> users = userRepository.findAll();
         return users.stream().map(UserMapper::mapToUserDto)
                 .collect(Collectors.toList());
+
     }
 
     @Override
     public UserDto updateUser(Long id, UserDto updatedUser) {
+
         User user = userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("User is not exists with given id: " + id));
 
@@ -55,14 +60,17 @@ public class UserServiceImpl implements UserService {
         User updatedUserObj = userRepository.save(user);
 
         return UserMapper.mapToUserDto(updatedUserObj);
+
     }
 
     @Override
     public void deleteUser(Long id) {
+
         User user = userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("User is not exists with given id: " + id)
         );
         userRepository.delete(user);
+
     }
 
 }

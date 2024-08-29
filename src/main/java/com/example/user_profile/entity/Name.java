@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Embeddable
 public class Name {
+
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = true)

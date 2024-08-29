@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 import java.time.Instant;
@@ -21,7 +20,7 @@ import java.time.temporal.ChronoUnit;
 @Entity
 @EntityListeners(LastUpdateListener.class)
 @Table(name = "users")
-public class User {
+public class User extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,20 +43,6 @@ public class User {
     @Column()
     private long age;
 
-    @Column(nullable = true)
-    @LastModifiedDate
-    private Date lastUpdate;
-
-    @PrePersist
-    @PreUpdate
-    public void calculateAge() {
-        if (dateOfBirthday != null) {
-            age = ChronoUnit.YEARS.between(
-                    LocalDateTime.ofInstant(Instant.ofEpochMilli(dateOfBirthday.getTime()), ZoneOffset.UTC),
-                    LocalDateTime.now()
-            );
-        }
-    }
 }
 
 

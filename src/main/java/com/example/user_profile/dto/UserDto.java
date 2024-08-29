@@ -1,5 +1,6 @@
 package com.example.user_profile.dto;
 
+import com.example.user_profile.entity.Auditable;
 import com.example.user_profile.entity.Name;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,5 @@ public class UserDto {
     private Date dateOfBirthday;
 
     private long age;
-
-    private Date lastUpdate;
 
 }

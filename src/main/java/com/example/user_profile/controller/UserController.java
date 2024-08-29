@@ -23,33 +23,43 @@ public class UserController {
         UserDto savedTodo = userService.addUser(userDto);
 
         return new ResponseEntity<>(savedTodo, HttpStatus.CREATED);
+
     }
 
     //Build Get User REST API
     @GetMapping("{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long id){
+
         UserDto userDto = userService.getUserById(id);
         return ResponseEntity.ok(userDto);
+
     }
 
     // Build Get All Users REST API
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers(){
+
         List<UserDto> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
+
     }
 
     // Build Update User REST API
     @PutMapping("{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long id, @RequestBody UserDto updatedUser){
+
         UserDto userDto = userService.updateUser(id, updatedUser);
         return ResponseEntity.ok(userDto);
+
     }
 
     // Build Delete User REST API
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long id){
+
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted successfully.");
+
     }
+
 }
