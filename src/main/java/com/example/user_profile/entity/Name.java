@@ -12,8 +12,9 @@ public class Name {
 
     @Column(nullable = false)
     private String firstName;
-    @Column(nullable = true)
+
     private String middleName;
+
     @Column(nullable = false)
     private String lastName;
 

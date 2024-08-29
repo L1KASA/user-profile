@@ -5,13 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.LastModifiedDate;
-
 import java.util.Date;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.temporal.ChronoUnit;
 
 @Setter
 @Getter
@@ -29,18 +23,16 @@ public class User extends Auditable {
     @Embedded
     private Name name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = true)
     private String gender;
 
-    @Column()
     private Date dateOfBirthday;
-    @Column()
+
     private long age;
 
 }
