@@ -1,12 +1,15 @@
 package com.example.user_profile.dto;
 
 import com.example.user_profile.entity.Name;
+import com.example.user_profile.entity.Ticket;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -27,5 +30,7 @@ public class UserDto {
     private Date dateOfBirthday;
 
     private long age;
+
+    private List<Ticket> user_tickets = new ArrayList<>();
 
 }

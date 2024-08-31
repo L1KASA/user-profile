@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -34,6 +36,10 @@ public class User extends Auditable {
     private Date dateOfBirthday;
 
     private long age;
+
+    @OneToMany
+    private List<Ticket> user_tickets = new ArrayList<>();
+
 
 }
 
