@@ -14,8 +14,8 @@ public class UserMapper {
                 user.getPassword(),
                 user.getGender(),
                 user.getDateOfBirthday(),
-                user.getAge(),
-                user.getUser_tickets()
+                user.getAge()
+
         );
 
     }
@@ -30,8 +30,7 @@ public class UserMapper {
                 userDto.getPassword(),
                 userDto.getGender(),
                 userDto.getDateOfBirthday(),
-                userDto.getAge(),
-                userDto.getUser_tickets()
+                userDto.getAge()
 
         );
     }

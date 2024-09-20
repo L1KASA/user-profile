@@ -37,9 +37,6 @@ public class User extends Auditable {
 
     private long age;
 
-    @OneToMany
-    private List<Ticket> user_tickets = new ArrayList<>();
-
 
 }
 

@@ -11,15 +11,15 @@ public class TicketMapper {
 
         return new TicketDto(
                 ticket.getId(),
-                ticket.getTo(),
+                ticket.getFlight(),
+                ticket.getPointOfDeparture(),
+                ticket.getPointOfArrival(),
                 ticket.getDeparture(),
                 ticket.getArrival(),
-                ticket.getFrom(),
-                ticket.getTo(),
                 ticket.getPrice(),
-                ticket.getGate(),
                 ticket.getSeat(),
-                ticket.getUser()
+                ticket.getGate()
+
         );
 
     }
@@ -28,15 +28,14 @@ public class TicketMapper {
 
         return new Ticket(
                 ticketDto.getId(),
-                ticketDto.getTo(),
+                ticketDto.getFlight(),
+                ticketDto.getPointOfDeparture(),
+                ticketDto.getPointOfDeparture(),
                 ticketDto.getDeparture(),
                 ticketDto.getArrival(),
-                ticketDto.getFrom(),
-                ticketDto.getTo(),
                 ticketDto.getPrice(),
-                ticketDto.getGate(),
                 ticketDto.getSeat(),
-                ticketDto.getUser()
+                ticketDto.getGate()
         );
     }
 

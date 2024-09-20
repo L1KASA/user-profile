@@ -20,20 +20,19 @@ public class TicketDto {
 
     private String flight;
 
+    private String pointOfDeparture;
+
+    private String pointOfArrival;
+
     private Date departure;
 
     private Date arrival;
 
-    private String from;
-
-    private String to;
-
     private Integer price;
-
-    private String gate;
 
     private String seat;
 
-    private User user;
+    private String gate;
+
 
 }

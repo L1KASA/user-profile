@@ -20,31 +20,20 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String flight;
 
-    @Column(nullable = false)
+    private String pointOfDeparture;
+
+    private String pointOfArrival;
+
     private Date departure;
 
-    @Column(nullable = false)
     private Date arrival;
 
-    @Column(nullable = false)
-    private String from;
-
-    @Column(nullable = false)
-    private String to;
-
-    @Column(nullable = false)
     private Integer price;
 
-    @Column(nullable = false)
-    private String gate;
-
-    @Column(nullable = false, unique = true)
     private String seat;
 
-    @ManyToOne
-    private User user;
+    private String gate;
 
 }
