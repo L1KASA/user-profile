@@ -43,13 +43,7 @@ public class TicketController {
         return ResponseEntity.ok(ticketsDto);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<TicketDto> updateTicket(@PathVariable("id") Long id, @RequestBody TicketDto updatedTicket) {
-        TicketDto ticketDto = ticketService.updateTicket(id, updatedTicket);
-        return ResponseEntity.ok(ticketDto);
-    }
-
-    @PutMapping("/{ticketId}/assign-user/{userId}")
+    @PutMapping("ticket/{ticketId}")
     public ResponseEntity<TicketDto> updateTicket(@PathVariable Long ticketId, @PathVariable Long userId, @RequestBody TicketDto updatedTicket) {
         TicketDto ticketDto = ticketService.updateTicket(ticketId, updatedTicket, userId);
 
@@ -61,7 +55,5 @@ public class TicketController {
         ticketService.deleteTicket(id);
         return ResponseEntity.ok("Ticket deleted successfully.");
     }
-
-
 
 }

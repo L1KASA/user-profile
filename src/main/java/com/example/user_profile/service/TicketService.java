@@ -13,8 +13,6 @@ public interface TicketService {
 
     List<TicketDto> getAllTickets();
 
-    TicketDto updateTicket(Long id, TicketDto updatedTicket);
-
     TicketDto updateTicket(Long id, TicketDto updatedTicket, Long user_id);
 
     void deleteTicket(Long id);

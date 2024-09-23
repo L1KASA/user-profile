@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,28 +55,25 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public TicketDto updateTicket(Long id, TicketDto updatedTicket) {
-        return null;
-    }
-
-    @Override
-    public TicketDto updateTicket(Long id, TicketDto updatedTicket, Long user_id) {
-
+    public TicketDto updateTicket(Long id, TicketDto updatedTicket, Long userId) {
         Ticket ticket = ticketRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Ticket is not exists with given id " + id)
         );
 
-        ticket.setUser(userRepository.findById(user_id).orElseThrow(
-                () -> new ResourceNotFoundException("User is not exists with given id " + id)
-        ));
-        //ticket.setFlight(updatedTicket.getFlight());
-        //ticket.setPrice(updatedTicket.getPrice());
-        //ticket.setArrival(updatedTicket.getArrival());
-        //ticket.setDeparture(updatedTicket.getDeparture());
-        //ticket.setGate(ticket.getGate());
-        //ticket.setPointOfArrival(updatedTicket.getPointOfArrival());
-        //ticket.setPointOfDeparture(updatedTicket.getPointOfDeparture());
-        //ticket.setSeat(updatedTicket.getSeat());
+        Optional.ofNullable(updatedTicket.getFlight()).ifPresent(ticket::setFlight);
+        Optional.ofNullable(updatedTicket.getDeparture()).ifPresent(ticket::setDeparture);
+        Optional.ofNullable(updatedTicket.getArrival()).ifPresent(ticket::setArrival);
+        Optional.ofNullable(updatedTicket.getGate()).ifPresent(ticket::setGate);
+        Optional.ofNullable(updatedTicket.getSeat()).ifPresent(ticket::setSeat);
+        Optional.ofNullable(updatedTicket.getPointOfArrival()).ifPresent(ticket::setPointOfArrival);
+        Optional.ofNullable(updatedTicket.getPointOfDeparture()).ifPresent(ticket::setPointOfDeparture);
+        Optional.ofNullable(updatedTicket.getPrice()).ifPresent(ticket::setPrice);
+
+        Optional.ofNullable(userId).ifPresent(user_id -> {
+            ticket.setUser(userRepository.findById(userId).orElseThrow(
+                    () -> new ResourceNotFoundException("User is not exists with given id " + userId)
+            ));
+        });
 
         Ticket updatedTicketObj = ticketRepository.save(ticket);
 
@@ -88,6 +86,8 @@ public class TicketServiceImpl implements TicketService {
         Ticket ticket = ticketRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Ticket is not exists with given id " + id)
         );
+
+        ticket.setUser(null);
 
         ticketRepository.delete(ticket);
 
