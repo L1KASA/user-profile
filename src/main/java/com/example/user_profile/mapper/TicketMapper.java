@@ -1,13 +1,11 @@
 package com.example.user_profile.mapper;
 
 import com.example.user_profile.dto.TicketDto;
-import com.example.user_profile.dto.UserDto;
 import com.example.user_profile.entity.Ticket;
-import com.example.user_profile.entity.User;
 
 public class TicketMapper {
 
-    public static TicketDto mapToUserDto(Ticket ticket) {
+    public static TicketDto mapToTicketDto(Ticket ticket) {
 
         return new TicketDto(
                 ticket.getId(),
@@ -18,13 +16,14 @@ public class TicketMapper {
                 ticket.getArrival(),
                 ticket.getPrice(),
                 ticket.getSeat(),
-                ticket.getGate()
+                ticket.getGate(),
+                UserMapper.mapToUserDto(ticket.getUser())
 
         );
 
     }
 
-    public static Ticket mapToUser(TicketDto ticketDto) {
+    public static Ticket mapToTicket(TicketDto ticketDto) {
 
         return new Ticket(
                 ticketDto.getId(),
@@ -35,7 +34,8 @@ public class TicketMapper {
                 ticketDto.getArrival(),
                 ticketDto.getPrice(),
                 ticketDto.getSeat(),
-                ticketDto.getGate()
+                ticketDto.getGate(),
+                UserMapper.mapToUser(ticketDto.getUser())
         );
     }
 

@@ -34,5 +34,7 @@ public class TicketDto {
 
     private String gate;
 
+    private UserDto user;
+
 
 }
