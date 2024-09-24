@@ -6,6 +6,6 @@ public class UserRemoveListener {
     @PreRemove
     public void onUserRemove(User user) {
         //user.getTickets().forEach(ticket -> ticket.setUser(null));
-        return;
+        return
     }
 }
