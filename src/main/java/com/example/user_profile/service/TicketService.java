@@ -17,5 +17,9 @@ public interface TicketService {
 
     TicketDto assignUserToTicket(Long id, Long userId, TicketDto ticketDto);
 
+    //TicketDto unassignUserFromTicket(Long id, Long userId, TicketDto ticketDto);
+
+    List<TicketDto> findTicketsByUserId(Long userId);
+
     void deleteTicket(Long id);
 }

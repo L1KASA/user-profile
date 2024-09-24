@@ -5,6 +5,7 @@ import jakarta.persistence.PreRemove;
 public class UserRemoveListener {
     @PreRemove
     public void onUserRemove(User user) {
-        user.getTickets().forEach(ticket -> ticket.setUser(null));
+        //user.getTickets().forEach(ticket -> ticket.setUser(null));
+        return;
     }
 }

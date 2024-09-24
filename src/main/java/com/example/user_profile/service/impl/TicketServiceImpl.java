@@ -93,6 +93,13 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
+    public List<TicketDto> findTicketsByUserId(Long userId) {
+        List<Ticket> tickets = ticketRepository.findTicketsByUserId(userId);
+
+        return tickets.stream().map(TicketMapper::mapToTicketDto).collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteTicket(Long id) {
 
         Ticket ticket = ticketRepository.findById(id).orElseThrow(

@@ -58,6 +58,12 @@ public class TicketController {
         return ResponseEntity.ok(ticketDto);
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<TicketDto>> getAllTicketsByUserId(@PathVariable Long userId) {
+        List<TicketDto> tickets = ticketService.findTicketsByUserId(userId);
+        return ResponseEntity.ok(tickets);
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTicket(@PathVariable("id") Long id) {
         ticketService.deleteTicket(id);

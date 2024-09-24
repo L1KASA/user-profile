@@ -31,6 +31,6 @@ public class UserDto {
 
     private long age;
 
-    private List<TicketDto> tickets = new ArrayList<>();
+    //private List<TicketDto> tickets = new ArrayList<>();
 
 }
