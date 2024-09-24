@@ -2,10 +2,7 @@ package com.example.user_profile.controller;
 
 import com.example.user_profile.dto.TicketDto;
 
-import com.example.user_profile.dto.UserDto;
-import com.example.user_profile.entity.Ticket;
 import com.example.user_profile.service.TicketService;
-import com.example.user_profile.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

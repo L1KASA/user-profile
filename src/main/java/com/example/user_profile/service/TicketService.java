@@ -1,7 +1,6 @@
 package com.example.user_profile.service;
 
 import com.example.user_profile.dto.TicketDto;
-import com.example.user_profile.dto.UserDto;
 
 import java.util.List;
 

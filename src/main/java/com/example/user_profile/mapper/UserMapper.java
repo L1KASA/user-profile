@@ -3,6 +3,9 @@ package com.example.user_profile.mapper;
 import com.example.user_profile.dto.UserDto;
 import com.example.user_profile.entity.User;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class UserMapper {
     public static UserDto mapToUserDto(User user) {
 
@@ -14,8 +17,9 @@ public class UserMapper {
                 user.getPassword(),
                 user.getGender(),
                 user.getDateOfBirthday(),
-                user.getAge()
+                user.getAge(),
 
+                new ArrayList<>()
         );
 
     }
@@ -30,8 +34,11 @@ public class UserMapper {
                 userDto.getPassword(),
                 userDto.getGender(),
                 userDto.getDateOfBirthday(),
-                userDto.getAge()
+                userDto.getAge(),
 
+                userDto.getTickets() != null ? new HashSet<>(userDto.getTickets().stream()
+                        .map(TicketMapper::mapToTicket)
+                        .toList()) : new HashSet<>()
         );
     }
 

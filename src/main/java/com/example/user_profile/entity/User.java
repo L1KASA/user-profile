@@ -1,6 +1,5 @@
 package com.example.user_profile.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,9 +36,9 @@ public class User extends Auditable {
 
     private long age;
 
-    //@JsonIgnore
-    //@OneToMany(mappedBy = "user")
-    //private Set<Ticket> tickets = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Ticket> tickets = new HashSet<>();
 
 }
 

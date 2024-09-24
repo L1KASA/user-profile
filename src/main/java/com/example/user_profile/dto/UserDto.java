@@ -1,7 +1,6 @@
 package com.example.user_profile.dto;
 
 import com.example.user_profile.entity.Name;
-import com.example.user_profile.entity.Ticket;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +30,7 @@ public class UserDto {
 
     private long age;
 
-    //private List<TicketDto> tickets = new ArrayList<>();
+
+    private List<TicketDto> tickets = new ArrayList<>();
 
 }

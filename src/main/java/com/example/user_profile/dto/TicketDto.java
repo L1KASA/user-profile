@@ -1,8 +1,6 @@
 package com.example.user_profile.dto;
 
-import com.example.user_profile.entity.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +32,7 @@ public class TicketDto {
 
     private String gate;
 
+    @JsonIgnore
     private UserDto user;
 
 

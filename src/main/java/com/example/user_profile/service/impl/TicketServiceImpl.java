@@ -73,19 +73,17 @@ public class TicketServiceImpl implements TicketService {
 
         return TicketMapper.mapToTicketDto(updatedTicketObj);
     }
-
     @Override
     public TicketDto assignUserToTicket(Long id, Long userId, TicketDto ticketDto) {
         Ticket ticket = ticketRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Ticket is not exists with given id " + id)
+                () -> new ResourceNotFoundException("Ticket does not exist with the given id: " + id)
         );
 
-        Optional.ofNullable(ticketDto.getUser()).ifPresent( userDto -> {
-            ticket.setUser(userRepository.findById(userId).orElseThrow(
-                    () -> new ResourceNotFoundException("User is not exists with given id " + userId)
-            ));
-                }
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User does not exist with the given id: " + userId)
         );
+
+        ticket.setUser(user);
 
         ticketRepository.save(ticket);
 
