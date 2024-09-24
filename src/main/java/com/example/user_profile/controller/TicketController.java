@@ -2,6 +2,7 @@ package com.example.user_profile.controller;
 
 import com.example.user_profile.dto.TicketDto;
 
+import com.example.user_profile.dto.UserDto;
 import com.example.user_profile.entity.Ticket;
 import com.example.user_profile.service.TicketService;
 import com.example.user_profile.service.UserService;
@@ -43,9 +44,16 @@ public class TicketController {
         return ResponseEntity.ok(ticketsDto);
     }
 
-    @PutMapping("ticket/{ticketId}")
-    public ResponseEntity<TicketDto> updateTicket(@PathVariable Long ticketId, @PathVariable Long userId, @RequestBody TicketDto updatedTicket) {
-        TicketDto ticketDto = ticketService.updateTicket(ticketId, updatedTicket, userId);
+    @PutMapping("{ticketId}")
+    public ResponseEntity<TicketDto> updateTicket(@PathVariable Long ticketId, @RequestBody TicketDto updatedTicket) {
+        TicketDto ticketDto = ticketService.updateTicket(ticketId, updatedTicket);
+
+        return ResponseEntity.ok(ticketDto);
+    }
+
+    @PutMapping({"{ticketId}/user/{userId}"})
+    public ResponseEntity<TicketDto> assignUserToTicket(@PathVariable Long ticketId, @PathVariable Long userId, @RequestBody TicketDto updatedTicket) {
+        TicketDto ticketDto = ticketService.assignUserToTicket(ticketId, userId, updatedTicket);
 
         return ResponseEntity.ok(ticketDto);
     }

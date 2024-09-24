@@ -55,7 +55,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public TicketDto updateTicket(Long id, TicketDto updatedTicket, Long userId) {
+    public TicketDto updateTicket(Long id, TicketDto updatedTicket) {
         Ticket ticket = ticketRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Ticket is not exists with given id " + id)
         );
@@ -69,15 +69,27 @@ public class TicketServiceImpl implements TicketService {
         Optional.ofNullable(updatedTicket.getPointOfDeparture()).ifPresent(ticket::setPointOfDeparture);
         Optional.ofNullable(updatedTicket.getPrice()).ifPresent(ticket::setPrice);
 
-        Optional.ofNullable(userId).ifPresent(user_id -> {
-            ticket.setUser(userRepository.findById(userId).orElseThrow(
-                    () -> new ResourceNotFoundException("User is not exists with given id " + userId)
-            ));
-        });
-
         Ticket updatedTicketObj = ticketRepository.save(ticket);
 
         return TicketMapper.mapToTicketDto(updatedTicketObj);
+    }
+
+    @Override
+    public TicketDto assignUserToTicket(Long id, Long userId, TicketDto ticketDto) {
+        Ticket ticket = ticketRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Ticket is not exists with given id " + id)
+        );
+
+        Optional.ofNullable(ticketDto.getUser()).ifPresent( userDto -> {
+            ticket.setUser(userRepository.findById(userId).orElseThrow(
+                    () -> new ResourceNotFoundException("User is not exists with given id " + userId)
+            ));
+                }
+        );
+
+        ticketRepository.save(ticket);
+
+        return TicketMapper.mapToTicketDto(ticket);
     }
 
     @Override

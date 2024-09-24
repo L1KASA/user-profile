@@ -13,7 +13,9 @@ public interface TicketService {
 
     List<TicketDto> getAllTickets();
 
-    TicketDto updateTicket(Long id, TicketDto updatedTicket, Long user_id);
+    TicketDto updateTicket(Long id, TicketDto updatedTicket);
+
+    TicketDto assignUserToTicket(Long id, Long userId, TicketDto ticketDto);
 
     void deleteTicket(Long id);
 }

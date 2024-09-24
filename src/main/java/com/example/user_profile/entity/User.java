@@ -14,7 +14,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@EntityListeners(LastUpdateListener.class)
+@EntityListeners({UpdateAgeListener.class})
 @Table(name = "users")
 public class User extends Auditable {
 
@@ -37,10 +37,9 @@ public class User extends Auditable {
 
     private long age;
 
-    //@JsonIgnore
-    //@OneToMany(mappedBy = "user")
-    //private Set<Ticket> tickets = new HashSet<>();
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Ticket> tickets = new HashSet<>();
 
 }
 
