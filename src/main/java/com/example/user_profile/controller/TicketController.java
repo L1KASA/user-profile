@@ -49,8 +49,15 @@ public class TicketController {
     }
 
     @PutMapping({"{ticketId}/user/{userId}"})
-    public ResponseEntity<TicketDto> assignUserToTicket(@PathVariable Long ticketId, @PathVariable Long userId, @RequestBody TicketDto updatedTicket) {
-        TicketDto ticketDto = ticketService.assignUserToTicket(ticketId, userId, updatedTicket);
+    public ResponseEntity<TicketDto> assignUserToTicket(@PathVariable Long ticketId, @PathVariable Long userId) {
+        TicketDto ticketDto = ticketService.assignUserToTicket(ticketId, userId);
+
+        return ResponseEntity.ok(ticketDto);
+    }
+
+    @DeleteMapping("{ticketId}/user/null")
+    public ResponseEntity<TicketDto> unassignUserFromTicket(@PathVariable Long ticketId) {
+        TicketDto ticketDto = ticketService.unassignUserFromTicket(ticketId);
 
         return ResponseEntity.ok(ticketDto);
     }

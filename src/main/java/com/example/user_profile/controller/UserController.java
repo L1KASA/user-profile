@@ -1,6 +1,7 @@
 package com.example.user_profile.controller;
 
 import com.example.user_profile.dto.UserDto;
+import com.example.user_profile.entity.User;
 import com.example.user_profile.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class UserController {
 
     // Build Add Users REST API
     @PostMapping
-    public ResponseEntity<UserDto> addTodo(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto){
 
         UserDto savedTodo = userService.addUser(userDto);
 
@@ -50,6 +51,18 @@ public class UserController {
         UserDto userDto = userService.updateUser(id, updatedUser);
         return ResponseEntity.ok(userDto);
 
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<UserDto>> searchUsersByName(@RequestBody UserDto userDto){
+        List<UserDto> users = userService.searchUsersByName(
+                userDto.getName().getFirstName(),
+                userDto.getName().getLastName(),
+                userDto.getName().getMiddleName(),
+                userDto.getName().getSurName()
+        );
+
+        return ResponseEntity.ok(users);
     }
 
     // Build Delete User REST API

@@ -13,6 +13,8 @@ public interface UserService {
 
     UserDto updateUser(Long id, UserDto updatedUser);
 
+    List<UserDto> searchUsersByName(String firstName, String lastName, String middleName, String surName);
+
     void deleteUser(Long id);
 
 }

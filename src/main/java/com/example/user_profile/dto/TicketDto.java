@@ -1,12 +1,15 @@
 package com.example.user_profile.dto;
 
+import com.example.user_profile.entity.Luggage;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -34,6 +37,8 @@ public class TicketDto {
 
     @JsonIgnore
     private UserDto user;
+
+    private List<LuggageDto> luggages = new ArrayList<>();
 
 
 }

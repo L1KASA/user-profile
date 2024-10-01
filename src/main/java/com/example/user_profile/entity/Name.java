@@ -18,4 +18,5 @@ public class Name {
     @Column(nullable = false)
     private String lastName;
 
+    private String surName;
 }

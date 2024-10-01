@@ -74,7 +74,7 @@ public class TicketServiceImpl implements TicketService {
         return TicketMapper.mapToTicketDto(updatedTicketObj);
     }
     @Override
-    public TicketDto assignUserToTicket(Long id, Long userId, TicketDto ticketDto) {
+    public TicketDto assignUserToTicket(Long id, Long userId) {
         Ticket ticket = ticketRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Ticket does not exist with the given id: " + id)
         );
@@ -84,6 +84,20 @@ public class TicketServiceImpl implements TicketService {
         );
 
         ticket.setUser(user);
+
+        ticketRepository.save(ticket);
+
+        return TicketMapper.mapToTicketDto(ticket);
+    }
+
+    @Override
+    public TicketDto unassignUserFromTicket(Long id) {
+
+        Ticket ticket = ticketRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Ticket does not exist with the given id: " + id)
+        );
+
+        ticket.setUser(null);
 
         ticketRepository.save(ticket);
 

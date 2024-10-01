@@ -68,6 +68,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDto> searchUsersByName(String firstName, String lastName, String middleName, String surName) {
+        List<User> users = userRepository.findByName_FirstNameAndName_LastNameAndName_MiddleNameAndName_SurName(firstName, lastName, middleName, surName);
+        return users.stream().map(UserMapper::mapToUserDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteUser(Long id) {
 
         User user = userRepository.findById(id).orElseThrow(
