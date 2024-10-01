@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "luggage")
-public class Luggage {
+public class Luggage extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

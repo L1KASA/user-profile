@@ -1,6 +1,7 @@
 package com.example.user_profile.dto;
 
 import com.example.user_profile.entity.Ticket;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,5 +20,6 @@ public class LuggageDto {
 
     private Integer weight;
 
+    @JsonIgnore
     private TicketDto ticket;
 }
